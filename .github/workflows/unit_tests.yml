@@ -29,7 +29,7 @@ jobs:
       has_changes: ${{ steps.filter.outputs.changed_packages != '[]' }}
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/changes
+      - uses: ./.github/actions/changes_unit
         id: filter
 
   unit_tests:
