@@ -100,6 +100,9 @@ class EmailForm extends StatelessWidget {
   /// A label that would be used for the "Sign in" button.
   final String? actionButtonLabelOverride;
 
+  /// Whether to show the password visibility toggle button.
+  final bool showPasswordVisibilityToggle;
+
   /// {@macro ui.auth.widgets.email_form}
   const EmailForm({
     super.key,
@@ -109,6 +112,7 @@ class EmailForm extends StatelessWidget {
     this.onSubmit,
     this.email,
     this.actionButtonLabelOverride,
+    this.showPasswordVisibilityToggle = false,
   });
 
   @override
@@ -120,6 +124,7 @@ class EmailForm extends StatelessWidget {
       email: email,
       onSubmit: onSubmit,
       actionButtonLabelOverride: actionButtonLabelOverride,
+      showPasswordVisibilityToggle: showPasswordVisibilityToggle,
     );
 
     return AuthFlowBuilder<EmailAuthController>(
@@ -142,6 +147,7 @@ class _SignInFormContent extends StatefulWidget {
   final EmailAuthProvider? provider;
 
   final String? actionButtonLabelOverride;
+  final bool showPasswordVisibilityToggle;
 
   const _SignInFormContent({
     this.auth,
@@ -150,6 +156,7 @@ class _SignInFormContent extends StatefulWidget {
     this.email,
     this.provider,
     this.actionButtonLabelOverride,
+    this.showPasswordVisibilityToggle = false,
   });
 
   @override
@@ -222,6 +229,7 @@ class _SignInFormContentState extends State<_SignInFormContent> {
         controller: passwordCtrl,
         onSubmit: _submit,
         placeholder: l.passwordInputLabel,
+        showVisibilityToggle: widget.showPasswordVisibilityToggle,
       ),
       if (widget.action == AuthAction.signIn) ...[
         const SizedBox(height: 8),
@@ -261,6 +269,7 @@ class _SignInFormContentState extends State<_SignInFormContent> {
             )
           ]),
           placeholder: l.confirmPasswordInputLabel,
+          showVisibilityToggle: widget.showPasswordVisibilityToggle,
         ),
         const SizedBox(height: 8),
       ],
